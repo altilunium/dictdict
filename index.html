@@ -1,0 +1,89 @@
+<title>dictdict</title>
+<link rel="icon" href="f.png" type="image/x-icon">
+<style>
+	
+#i {
+	width:100%;
+	height:100%;
+}
+</style>
+
+
+<textarea autofocus id="i" name="message" rows="4" cols="50"></textarea>
+
+
+<script src="dexie.js"></script>
+<script>
+
+
+	var db = new Dexie("dictdict");
+	db.version(1).stores({
+	    words: "++word,def,ex"
+	});
+
+
+
+
+
+
+
+  var textarea = document.getElementById("i");
+  textarea.addEventListener("keydown", function(event) {
+
+  	if (event.key === ":" || event.keyCode === 58) {
+      // Do something when colon key is typed...
+      var textareaValue = textarea.value;
+      var defs = textareaValue.split(":")
+      inWord = defs[0].trim().toLowerCase()
+		db.words.where("word").equals(inWord).toArray()
+		  .then(function(results) {
+		  	console.log(results)
+		    var theString = results[0]['word'] + " : " + results[0]['def'] +"\n" + results[0]['ex']
+		    textarea.value = theString
+ 		  })
+		  .catch(function(error) {
+		    //alert(error);
+		  });
+    }
+
+    if (event.key === "|") {
+      db.words.toArray()
+      	.then(function(results){
+      		console.log(results)
+      		var theString = ""
+      		for (var i = 0 ; i < results.length ; i++) {
+      			theString = theString + results[i]['word'] + " : "+ results[i]['def'] +"\n"
+			}
+			textarea.value = theString
+			
+      	})
+      	.catch(function(error) {
+		    //alert(error);
+		  });
+
+    }
+
+
+    if (event.ctrlKey && event.keyCode == 13) {
+      var textareaValue = textarea.value;
+      var lines = textareaValue.split("\n");
+      var defs = lines[0].split(":")
+      inWord = defs[0].trim().toLowerCase();
+      inDef = defs[1].trim()
+      inEx = lines[1].trim()
+      db.transaction("rw", db.words, function*(){
+		var p = yield db.words.put({
+			word : inWord,
+			def : inDef,
+			ex : inEx
+		})
+	  textarea.value = ""
+	})
+
+
+
+
+
+    }
+  });
+</script>
