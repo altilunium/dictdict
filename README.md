@@ -16,7 +16,7 @@ Write the entry by using this format
 Then press `ctrl+enter` to save
 
 ### Reading a previously added entry
-If `word` is already added before, writing the `word : ` to the textbox will be autocompleted with its definition and example sentence.
+If a `word` has already been added, typing `word :`  into the textbox will autocomplete with its definition and example sentence
 
 ### List all of previously added entry
-Write the pipe symbol (| , `shift+\`) to the textbox.
+Write the pipe symbol (| , `shift+\`) into the textbox.
