@@ -1,5 +1,5 @@
 # dictdict
-Dictionary maker
+Personal dictionary maker
 
 https://altilunium.github.io/dictdict
 
