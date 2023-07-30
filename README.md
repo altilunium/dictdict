@@ -21,4 +21,4 @@ Then press `ctrl+enter` to save
 </pre>
 
 ### List all of previously added entry
-Press `shift+\`
+Press `shift+\` (pipe symbol : | )
