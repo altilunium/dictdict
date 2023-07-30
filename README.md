@@ -19,4 +19,4 @@ Then press `ctrl+enter` to save
 If a `word` has already been added, typing `word :`  into the textbox will autocomplete with its definition and example sentence
 
 ### List all of previously added entry
-Write the pipe symbol (| , `shift+\`) into the textbox.
+Write the pipe symbol ( `|` , `shift+\` ) into the textbox.
